@@ -25,8 +25,8 @@ Este proyecto contiene la solución a la prueba técnica para el rol de **Ingeni
 #### ⬇️ Clonar el repositorio:
 
 >```shell
-> git clone <URL_DEL_REPOSITORIO>
-> cd <NOMBRE_DEL_REPOSITORIO>
+>git clone <URL_DEL_REPOSITORIO>
+>cd <NOMBRE_DEL_REPOSITORIO>
 >```
 
 #### 🔧 Iniciar los servicios:
@@ -34,7 +34,7 @@ Este proyecto contiene la solución a la prueba técnica para el rol de **Ingeni
 Ejecuta el siguiente comando en la raíz del proyecto para crear y arrancar los contenedores en segundo plano:
 
 >```shell
-> docker-compose up -d
+>docker-compose up -d
 >```
 
 Este comando leerá el archivo **docker-compose.yml** y creará dos contenedores: uno para **PostgreSQL** y otro para **MongoDB**.
@@ -44,7 +44,7 @@ Este comando leerá el archivo **docker-compose.yml** y creará dos contenedores
 En caso de que quieras detener y eliminar completamente el contenedor, junto con los volúmenes asociados (datos creados durante las pruebas), puedes usar:
 
 >```shell
-> docker-compose down --volumes --rmi all
+>docker-compose down --volumes --rmi all
 >```
 
 ## 🧩 Parte 1: Fondos

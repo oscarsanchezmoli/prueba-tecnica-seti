@@ -4,12 +4,14 @@ import com.seti.pruebaTecnicaSeti.dto.ClienteRequest;
 import com.seti.pruebaTecnicaSeti.dto.ClienteResponse;
 import com.seti.pruebaTecnicaSeti.entity.Cliente;
 import com.seti.pruebaTecnicaSeti.enums.PreferenciaNotificacion;
+import com.seti.pruebaTecnicaSeti.enums.RolCliente;
 import com.seti.pruebaTecnicaSeti.exception.NotFoundException;
 import com.seti.pruebaTecnicaSeti.repository.ClienteRepository;
 import com.seti.pruebaTecnicaSeti.service.ClienteService;
 import com.seti.pruebaTecnicaSeti.utils.Util;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
@@ -23,6 +25,7 @@ public class ClienteServiceImpl implements ClienteService {
 
     private final ClienteRepository clienteRepository;
     private final Util util;
+    private final PasswordEncoder passwordEncoder;
 
     @Override
     public ClienteResponse crearCliente(ClienteRequest request) {
@@ -39,8 +42,9 @@ public class ClienteServiceImpl implements ClienteService {
         Cliente cliente = util.convertTo(request, Cliente.class);
         cliente.setSaldoDisponible(new BigDecimal("5000"));
         cliente.setPreferenciaNotificacion(notificacion);
-        Cliente clienteGuardado = clienteRepository.save(cliente)
-                ;
+        cliente.getRoles().add(RolCliente.CLIENTE_BASICO);
+        cliente.setPassword(passwordEncoder.encode(request.getPassword()));
+        Cliente clienteGuardado = clienteRepository.save(cliente);
         log.info("Cliente creado exitosamente con ID: {}", clienteGuardado.getId());
 
         return util.convertTo(clienteGuardado, ClienteResponse.class);

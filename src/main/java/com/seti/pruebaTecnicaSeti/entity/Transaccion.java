@@ -38,5 +38,6 @@ public class Transaccion {
 
     @CreatedDate
     @Field("fecha_transaccion")
-    private LocalDateTime fechaTransaccion;
+    @Builder.Default
+    private LocalDateTime fechaTransaccion = LocalDateTime.now();
 }

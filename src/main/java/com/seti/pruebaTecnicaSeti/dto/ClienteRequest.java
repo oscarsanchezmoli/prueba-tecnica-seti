@@ -22,6 +22,9 @@ public class ClienteRequest {
     @NotBlank(message = "El email es obligatorio")
     private String email;
 
+    @NotBlank(message = "La contraseña es obligatorio")
+    private String password;
+
     @NotBlank(message = "El teléfono es obligatorio")
     private String telefono;
 
